@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Scale Application</string>
+    <string name="app_title">SCLARIA</string>
+    <string name="remote_scale_button">REMOTE SCALE</string>
+    <string name="pour_over_button">POUR OVER</string>
+    <string name="espresso_button">ESPRESSO</string>
+    <string name="rem_back_button">BACK</string>
+    <string name="text_timer">00:00</string>
+    <string name="text_scale">0g</string>
+    <string name="tare_button">TARE</string>
+    <string name="calculator_text"> POUR OVER CALCULATOR</string>
+    <string name="ratio_text"> Ratio:</string>
+    <string name="ratio_input_text">1 :</string>
+    <string name="hint_ratio_text">15</string>
+    <string name="need_text">You will need:</string>
+    <string name="coffee_grams_text">27</string>
+    <string name="grams_text">g.</string>
+    <string name="coffee_text">Coffee:</string>
+    <string name="water_text">Water:</string>
+    <string name="empty"></string>
+    <string name="next">NEXT</string>
+    <string name="start_brew_text">Start Brewing</string>
+    <string name="title1">STEP 1 OF 8</string>
+    <string name="subtitle1">BOIL THE WATER</string>
+    <string name="content1">Warm %1$s ml of water to 90°C.</string>
+
+    <string name="steps">Hello blank fragment</string>
+</resources>
