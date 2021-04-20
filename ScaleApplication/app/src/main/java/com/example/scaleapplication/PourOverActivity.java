@@ -2,24 +2,16 @@ package com.example.scaleapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class PourOverActivity extends AppCompatActivity {
-   // String originalValue;
-    Boolean isRatioChanged = false;
-    String coffee;
-    String water;
-    Fragment step1Fragment = new PourOverS1Fragment();
-    Fragment ratioFragment = new Ratio();
-    Fragment[] steps ={ratioFragment, step1Fragment};
 
+public class PourOverActivity extends AppCompatActivity {
+    String coffee,water;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +20,29 @@ public class PourOverActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.steps[0], Ratio.class, null)
+                    .add(R.id.ratio_fragment, Ratio.class, null)
                     .commit();
         }
+        Button startBrewingButton = findViewById(R.id.button);
+        startBrewingButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startBrewingButton.setVisibility(View.INVISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("coffee",coffee);
+                bundle.putString("water",water);
+                Fragment step1Fragment = new PourOverS1Fragment();
+                step1Fragment.setArguments(bundle);
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.ratio_fragment, step1Fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
     public void f1(String s1, String s2){
          coffee = s2;
          water = s1;
-    }
-
-    public interface OnDataPass {
-        public void onDataPass(String data);
     }
 
     public void onClickBack(View view){
@@ -46,21 +50,6 @@ public class PourOverActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickStartBrewing(View view){
-        Button back = findViewById(R.id.back_button);
-        Button next = findViewById(R.id.next_button);
-        Button start = findViewById(R.id.button);
-        start.setVisibility(View.INVISIBLE);
-        next.setVisibility(View.VISIBLE);
-        back.setVisibility(View.VISIBLE);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.ratio_fragment, step1Fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
-    public void onClickStepBack(View view){
-
-    }
 
 }

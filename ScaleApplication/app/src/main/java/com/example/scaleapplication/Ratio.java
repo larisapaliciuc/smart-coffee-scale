@@ -21,6 +21,7 @@ public class Ratio extends Fragment {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,10 +30,11 @@ public class Ratio extends Fragment {
         // Inflate the layout for this fragment
         TextView ratioTextView = rootView.findViewById(R.id.water_ratio_textbox);
         EditText waterOutputBox = rootView.findViewById(R.id.water_textbox);
-        EditText  coffeeTextBox = rootView.findViewById(R.id.coffee_textbox);
+        EditText coffeeTextBox = rootView.findViewById(R.id.coffee_textbox);
         waterOutputBox.setText(Integer.toString(Integer.parseInt(coffeeTextBox.getText().toString()) * Integer.parseInt((ratioTextView.getText()).toString())));
         coffeeTextBox.setText(Integer.toString(Integer.parseInt(waterOutputBox.getText().toString()) / Integer.parseInt((ratioTextView.getText()).toString())));
-
+        PourOverActivity m1 = (PourOverActivity) getActivity();
+        m1.f1(waterOutputBox.getText().toString(),coffeeTextBox.getText().toString());
             coffeeTextBox.addTextChangedListener(new TextWatcher(){
             @Override
             public void afterTextChanged(Editable s) {

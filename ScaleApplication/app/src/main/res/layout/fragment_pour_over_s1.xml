@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="522dp"
+    android:id="@+id/StepsFragment"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="#EBFDECDC"
+    android:orientation="vertical"
     tools:context=".PourOverS1Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,15 +16,40 @@
         android:textAlignment="center"
         tools:context=".PourOverS1Fragment">
 
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="132dp"
+            android:layout_height="54dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="4dp"
+            android:background="#492105"
+            android:text="@string/next"
+            android:visibility="visible"
+            app:backgroundTint="#492105"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="132dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginBottom="4dp"
+            android:background="#492105"
+            android:text="@string/rem_back_button"
+            android:visibility="visible"
+            app:backgroundTint="#492105"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="203dp"
             android:layout_height="43dp"
             android:layout_marginStart="90dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="90dp"
             android:layout_weight="1"
-            android:text="STEP 1 OF 8"
             android:textAlignment="center"
             android:textColor="@color/coffee_brown"
             android:textSize="24sp"
@@ -33,46 +60,70 @@
 
         <TextView
             android:id="@+id/contentTextView"
-            android:layout_width="409dp"
-            android:layout_height="172dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginBottom="38dp"
-            android:text="TextView"
+            android:layout_width="356dp"
+            android:layout_height="270dp"
+            android:layout_marginTop="8dp"
             android:textAlignment="center"
             android:textColor="@color/coffee_brown"
-            android:textSize="24dp"
-            app:flow_verticalAlign="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="149dp"
-            android:layout_height="121dp"
+            android:id="@+id/pourOverImage"
+            android:layout_width="117dp"
+            android:layout_height="75dp"
             android:src="@drawable/step1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.292" />
+            app:layout_constraintVertical_bias="0.077" />
 
         <TextView
             android:id="@+id/subtitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="176dp"
-            android:layout_marginTop="39dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="178dp"
-            android:text="TextView"
             android:textAlignment="center"
             android:textColor="@color/coffee_brown"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/pourOverImage" />
+
+        <TextView
+            android:id="@+id/weightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="87dp"
+            android:text="@string/weight"
+            android:textColor="@color/coffee_brown"
+            android:textSize="36sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contentTextView" />
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="87dp"
+            android:text="@string/weight"
+            android:textColor="@color/coffee_brown"
+            android:textSize="36sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contentTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+
+</RelativeLayout>

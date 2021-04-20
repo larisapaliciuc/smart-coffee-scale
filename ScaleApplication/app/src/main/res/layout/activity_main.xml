@@ -15,6 +15,7 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="213dp"
         android:layout_marginEnd="120dp"
+        android:layout_marginBottom="18dp"
         android:background="@drawable/button_border"
         android:onClick="onClickRemoteScale"
         android:text="@string/remote_scale_button"
@@ -24,6 +25,7 @@
         android:visibility="visible"
         app:backgroundTint="#8DFFFFFF"
         app:iconTint="#FFD685"
+        app:layout_constraintBottom_toTopOf="@+id/pour_over_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +64,7 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="120dp"
+        android:layout_marginBottom="210dp"
         android:background="@drawable/button_border"
         android:text="@string/espresso_button"
         android:textAlignment="center"
@@ -70,9 +73,60 @@
         android:visibility="visible"
         app:backgroundTint="#8DFFFFFF"
         app:iconTint="#FFD685"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pour_over_button"
         tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/deviceTextView"
+        android:layout_width="403dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginBottom="14dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/device_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ListView
+        android:id="@+id/device_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:stackFromBottom="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/deviceTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/title_paired_devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="214dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="138dp"
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

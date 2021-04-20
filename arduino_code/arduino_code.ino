@@ -1,12 +1,17 @@
 
 #include <Wire.h>
+#include<SoftwareSerial.h>
 #include <LiquidCrystal_I2C.h> // Liquid Crystal_I2C library
 #include "HX711.h"  //You must have this library in your arduino library folder
 #define DOUT  2
 #define CLK  3
 #define sw 4
+#define BT_SERIAL_RX 8
+#define BT_SERIAL_TX 7
+
 HX711 scale;
 LiquidCrystal_I2C lcd(0x27,16,2);
+SoftwareSerial bluetoothSerial(BT_SERIAL_TX, BT_SERIAL_RX);
 //Change this calibration factor as per your load cell once it is found you may need to vary it in thousands
 float calibration_factor = -2032405;
 float loadcell_data;
@@ -21,6 +26,7 @@ bool buttoninc = 0;
  
 void setup() {
   pinMode(sw, INPUT);
+  bluetoothSerial.begin(9600);
   Serial.begin(9600);
   Serial.println("HX711 Calibration");
   Serial.println("Remove all weight from scale");
@@ -49,7 +55,8 @@ void setup() {
 //                         LOOP
 //=============================================================================================
 void loop() {
- 
+  bluetoothSerial.print("test");
+  delay(50);
   getWeight();
   setTimer();
 }

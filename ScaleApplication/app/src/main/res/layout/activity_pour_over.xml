@@ -10,8 +10,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="406dp"
-        android:layout_height="466dp"
+        android:layout_width="404dp"
+        android:layout_height="476dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         <FrameLayout
             android:id="@+id/ratio_fragment"
             android:layout_width="match_parent"
-            android:layout_height="457dp">
+            android:layout_height="match_parent">
 
         </FrameLayout>
 
@@ -47,46 +47,17 @@
         app:rippleColor="#00FFFFFF" />
 
     <Button
-        android:id="@+id/next_button"
-        android:layout_width="105dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="56dp"
-        android:background="#492105"
-        android:text="@string/next"
-        android:visibility="invisible"
-        app:backgroundTint="#492105"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="105dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="56dp"
-        android:background="#492105"
-        android:text="@string/rem_back_button"
-        android:visibility="invisible"
-        app:backgroundTint="#492105"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/button"
-        android:layout_width="157dp"
-        android:layout_height="77dp"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="131dp"
-        android:onClick="onClickStartBrewing"
+        android:layout_width="197dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/start_brew_text"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:backgroundTint="#492105"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!--
         <EditText
