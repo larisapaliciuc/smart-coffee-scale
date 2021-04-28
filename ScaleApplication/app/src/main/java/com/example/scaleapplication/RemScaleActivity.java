@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,15 +13,40 @@ import java.util.Locale;
 
 public class RemScaleActivity extends AppCompatActivity {
     private int seconds;
-    TextView textView;
     boolean isRunning = false;
-
+    final int handlerState = 10;
+    BluetoothConnection bluetoothConnection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rem_scale);
         runTimer();
+
     }
+    private final Handler mHandler = new Handler(Looper.getMainLooper()){
+        TextView weightTextView;
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            weightTextView = findViewById(R.id.scaleWeightTextView);
+            if (msg.what == handlerState) {
+                String readMessage = (String) msg.obj;
+                weightTextView.setText(String.format("%sg", readMessage));
+
+            }
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bluetoothConnection = new BluetoothConnection();
+        bluetoothConnection.setHandler(mHandler);
+        bluetoothConnection.initiateBluetoothProcess();
+        bluetoothConnection = BluetoothConnection.getInstance();
+
+
+    }
+
 
     public void onClickStart(View view) {
 
@@ -31,7 +57,7 @@ public class RemScaleActivity extends AppCompatActivity {
         // Get the text view.
         final TextView timeView
                 = (TextView)findViewById(
-                R.id.timer_text);
+                R.id.timerTextView);
 
         // Creates a new Handler
         final Handler handler
@@ -50,17 +76,21 @@ public class RemScaleActivity extends AppCompatActivity {
                                 minutes, secs);
 
                 timeView.setText(time);
-                if(isRunning)
+                if(isRunning) {
                     seconds++;
+                    bluetoothConnection.write("s");
+                }
                 handler.postDelayed(this, 1000);
             }
         });
     }
 
+
     public void onClickReset(View view)
     {
         isRunning = false;
         seconds = 0;
+        bluetoothConnection.write("r");
     }
     public void onClickBack(View view){
         Intent intent = new Intent(RemScaleActivity.this, MainActivity.class);

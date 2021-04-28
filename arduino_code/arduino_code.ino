@@ -50,15 +50,20 @@ void setup() {
   lcd.setCursor(10,0);
   lcd.print("Weight");
 }
- 
-//=============================================================================================
-//                         LOOP
-//=============================================================================================
+
 void loop() {
-  bluetoothSerial.print("test");
-  delay(50);
+  
   getWeight();
-  setTimer();
+   if (bluetoothSerial.available()) {
+    char command = bluetoothSerial.read();
+    Serial.print(command);
+    if(command  == 's'){
+      setTimer();
+    }
+    if(command == 'r'){
+      resetTimer();        
+    }
+  }  
 }
 
 void getWeight(){
@@ -70,10 +75,17 @@ void getWeight(){
       if(loadcell_data >= -0.5 && loadcell_data <= 0.2 ){
         lcd.setCursor(11,1);
         loadcell_data = 0;
-        lcd.print("0.0   ");
+        lcd.print("0.0g   ");
+      }
+      if(loadcell_data >=1000){
+        lcd.setCursor(11,1);
+        loadcell_data = 0;
+        lcd.print("ERROR");
       }
       lcd.setCursor(11,1);
       lcd.print(loadcell_data,1);
+      bluetoothSerial.print(loadcell_data,1);
+      bluetoothSerial.print('\n');
       if( loadcell_data > 5){
          buttoninc = 2;
       }
@@ -83,30 +95,31 @@ void getWeight(){
    }
 }
 void setTimer(){
-    Serial.print(buttoninc);
-    Serial.println();
-    currentMillis = millis();
-    if (currentMillis - previousMillisTimer >= intervalTimer) {
-      previousMillisTimer = currentMillis;
-      lcd.setCursor(0, 1);
-      if(buttoninc == 0){
-      secondes++;
-      }
-      else{
-        secondes = secondes;
-      }
-      sprintf(timeline,"%0.2d:%0.2d", minutes, secondes);
-      lcd.print(timeline);
-      if (secondes == 60)
-      {
-        secondes = 0;
-        minutes ++;
-      }
-      if(minutes == 99 && secondes == 59){
-        minutes = 0;
-        secondes = 0;
-      }
-    }      
+      Serial.println();
+      currentMillis = millis();
+      if (currentMillis - previousMillisTimer >= intervalTimer) {
+        previousMillisTimer = currentMillis;
+        lcd.setCursor(0, 1);
+        secondes++;
+        sprintf(timeline,"%0.2d:%0.2d", minutes, secondes);
+        lcd.print(timeline);
+        if (secondes == 60)
+        {
+          secondes = 0;
+          minutes ++;
+        }
+        if(minutes == 99 && secondes == 59){
+          minutes = 0;
+          secondes = 0;
+        }
+      }    
+}
+
+void resetTimer(){
+  secondes = 0;
+  minutes = 0;
+  lcd.setCursor(0,1);
+  lcd.print("00:00");
 }
 
 void calibrate(){
