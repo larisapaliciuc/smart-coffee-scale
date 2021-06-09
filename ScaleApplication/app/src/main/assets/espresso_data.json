@@ -1,0 +1,9 @@
+{"EspressoData": {
+  "coffeeGrams": "154",
+  "coffeeRatio": "2",
+  "coffeeAge": "14",
+  "waterTemperature": "85",
+  "espressoPressure": "9",
+  "coffeeType": ["blend","single origin"]
+}
+}

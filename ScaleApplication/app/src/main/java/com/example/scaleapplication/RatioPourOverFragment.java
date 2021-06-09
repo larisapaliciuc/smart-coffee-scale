@@ -1,7 +1,5 @@
 package com.example.scaleapplication;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,13 +11,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Ratio extends Fragment {
+public class RatioFragment extends Fragment {
 
-    public Ratio() {
+    public RatioFragment() {
         super(R.layout.fragment_ratio);
 
     }
-
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -33,8 +30,8 @@ public class Ratio extends Fragment {
         EditText coffeeTextBox = rootView.findViewById(R.id.coffee_textbox);
         waterOutputBox.setText(Integer.toString(Integer.parseInt(coffeeTextBox.getText().toString()) * Integer.parseInt((ratioTextView.getText()).toString())));
         coffeeTextBox.setText(Integer.toString(Integer.parseInt(waterOutputBox.getText().toString()) / Integer.parseInt((ratioTextView.getText()).toString())));
-        PourOverActivity m1 = (PourOverActivity) getActivity();
-        m1.f1(waterOutputBox.getText().toString(),coffeeTextBox.getText().toString());
+        PourOverActivity pourOver = (PourOverActivity) getActivity();
+        pourOver.getValues(waterOutputBox.getText().toString(),coffeeTextBox.getText().toString());
             coffeeTextBox.addTextChangedListener(new TextWatcher(){
             @Override
             public void afterTextChanged(Editable s) {
@@ -57,7 +54,7 @@ public class Ratio extends Fragment {
                     int waterNeeded = Integer.parseInt(s.toString()) * Integer.parseInt((ratioTextView.getText()).toString());
                     waterOutputBox.setText(Integer.toString(waterNeeded));
                     PourOverActivity m1 = (PourOverActivity) getActivity();
-                    m1.f1(waterOutputBox.getText().toString(),coffeeTextBox.getText().toString());
+                    m1.getValues(waterOutputBox.getText().toString(),coffeeTextBox.getText().toString());
                 }
             }
         });
@@ -79,33 +76,10 @@ public class Ratio extends Fragment {
                     int waterNeeded = Integer.parseInt(s.toString()) * Integer.parseInt((coffeeTextBox.getText()).toString());
                     waterOutputBox.setText(Integer.toString(waterNeeded));
                     PourOverActivity m1 = (PourOverActivity) getActivity();
-                    m1.f1(waterOutputBox.getText().toString(),coffeeTextBox.getText().toString());
+                    m1.getValues(waterOutputBox.getText().toString(),coffeeTextBox.getText().toString());
                 }
             }
         });
-        /*waterOutputBox.addTextChangedListener(new TextWatcher(){
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
-                    if (waterOutputBox.getText().length() != 0 && ratioTextView.getText().length() != 0) {
-                        int coffeeNeeded = Integer.parseInt(s.toString()) / Integer.parseInt((ratioTextView.getText()).toString());
-                        coffeeTextBox.setText(Integer.toString(coffeeNeeded));
-                        isRatioChanged = false;
-                    } else {
-                        return;
-                    }
-            }
-        });*/
         return rootView;
     }
 
