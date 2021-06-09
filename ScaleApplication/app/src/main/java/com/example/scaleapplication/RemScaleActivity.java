@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.Locale;
 
 public class RemScaleActivity extends AppCompatActivity {
@@ -20,10 +23,24 @@ public class RemScaleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rem_scale);
+        ImageButton startButton = findViewById(R.id.runButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isRunning = true;
+                bluetoothConnection.write("s");
+            }
+        });
         runTimer();
-
+        Button tareButton = findViewById(R.id.tareButton);
+        tareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bluetoothConnection.write("t"); // call tare function from arduino
+            }
+        });
     }
-    private final Handler mHandler = new Handler(Looper.getMainLooper()){
+    private Handler mHandler = new Handler(Looper.getMainLooper()){
         TextView weightTextView;
         @Override
         public void handleMessage(android.os.Message msg) {
@@ -31,7 +48,13 @@ public class RemScaleActivity extends AppCompatActivity {
             if (msg.what == handlerState) {
                 String readMessage = (String) msg.obj;
                 weightTextView.setText(String.format("%sg", readMessage));
+            }
+            if(isRunning) {
+                try {
 
+                } catch (Exception ex) {
+                    ex.getStackTrace();
+                }
             }
         }
     };
@@ -44,21 +67,13 @@ public class RemScaleActivity extends AppCompatActivity {
         bluetoothConnection.initiateBluetoothProcess();
         bluetoothConnection = BluetoothConnection.getInstance();
 
-
     }
 
 
-    public void onClickStart(View view) {
-
-        isRunning = true;
-    }
     private void runTimer() {
-
         // Get the text view.
-        final TextView timeView
-                = (TextView)findViewById(
-                R.id.timerTextView);
 
+        final TextView timeView = findViewById(R.id.timerTextView);
         // Creates a new Handler
         final Handler handler
                 = new Handler();
@@ -78,19 +93,25 @@ public class RemScaleActivity extends AppCompatActivity {
                 timeView.setText(time);
                 if(isRunning) {
                     seconds++;
-                    bluetoothConnection.write("s");
                 }
                 handler.postDelayed(this, 1000);
             }
         });
     }
 
-
-    public void onClickReset(View view)
-    {
+    public void onClickReset(View view){
         isRunning = false;
         seconds = 0;
         bluetoothConnection.write("r");
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        try {
+            bluetoothConnection.cancelConnection();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void onClickBack(View view){
         Intent intent = new Intent(RemScaleActivity.this, MainActivity.class);

@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -16,14 +17,7 @@ import java.util.UUID;
 
 public class BluetoothConnection {
     private String TAG = "ScaleBluetoothSerial";
-    private BluetoothDevice mDevice;
-    private OutputStream mOutputStream;
-    private InputStream mInputStream;
-    private boolean stopWorker;
-    private int readBufferPosition;
-    private byte[] readBuffer;
     private static BluetoothConnection connectionObj;
-    public String BlWeight;
     public static ConnectedThread mConnectedThread;
     public static BluetoothSocket btSocket;
     public static  Handler bluetoothIn;
@@ -57,7 +51,7 @@ public class BluetoothConnection {
         //create device and set the MAC address
         BluetoothDevice device = bluetoothAdapter.getRemoteDevice(deviceHardwareAddress);
         try {
-            btSocket =device.createRfcommSocketToServiceRecord(BTMODULEUUID);
+            btSocket =createRfcommSocketToServiceRecord(device,device.getUuids()[0].getUuid());
             btSocket.connect();
             Log.i(TAG, "HC-05 connected");
         } catch (IOException e) {
@@ -66,15 +60,20 @@ public class BluetoothConnection {
         }
         // Establish the Bluetooth socket connection.
         mConnectedThread = new ConnectedThread(btSocket,bluetoothIn);
+        // Start the thread to manage the connection and perform transmissions
         mConnectedThread.start();
 
     }
+    public static BluetoothSocket createRfcommSocketToServiceRecord(BluetoothDevice device, UUID uuid) throws IOException{
+            return device.createInsecureRfcommSocketToServiceRecord(uuid);
+    }
 
-    public void cancelConnection(){
+
+    public void cancelConnection() throws IOException {
         mConnectedThread.cancel();
     }
 
-    public void write(String text){
+    public void write(String text) {
         mConnectedThread.write(text);
     }
     public void setHandler(Handler handler) {

@@ -12,9 +12,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 public class ConnectedThread extends Thread{
-    private final BluetoothSocket mmSocket;
-    private final InputStream mmInStream;
-    private final OutputStream mmOutStream;
+    private  BluetoothSocket mmSocket;
+    private  InputStream mmInStream;
+    private  OutputStream mmOutStream;
     public static final int RESPONSE_MESSAGE = 10;
     Handler uih;
 
@@ -78,12 +78,15 @@ public class ConnectedThread extends Thread{
             byte[] bytes = data.getBytes();
             mmOutStream.write(bytes);
 
-        }catch(IOException e){}
+        }catch(IOException e){
+            Log.i("[THREAD-CT]",e.getMessage());
+        }
 
     }
-    public void cancel(){
-        try{
-            mmSocket.close();
-        }catch(IOException e){}
+    public void cancel() throws IOException {
+        Log.i("[THREAD-CT]","requested to close socket");
+        mmSocket.close();
+        mmOutStream.close();
+            
     }
 }

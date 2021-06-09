@@ -20,7 +20,7 @@ public class PourOverActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.ratio_fragment, Ratio.class, null)
+                    .add(R.id.ratio_fragment, RatioPourOverFragment.class, null)
                     .commit();
         }
         Button startBrewingButton = findViewById(R.id.button);
@@ -40,7 +40,7 @@ public class PourOverActivity extends AppCompatActivity {
             }
         });
     }
-    public void f1(String s1, String s2){
+    public void getValues(String s1, String s2){
          coffee = s2;
          water = s1;
     }

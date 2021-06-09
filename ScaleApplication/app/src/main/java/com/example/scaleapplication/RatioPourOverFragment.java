@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class RatioFragment extends Fragment {
+public class RatioPourOverFragment extends Fragment {
 
-    public RatioFragment() {
-        super(R.layout.fragment_ratio);
+    public RatioPourOverFragment() {
+        super(R.layout.fragment_ratio_pour_over);
 
     }
 
@@ -23,7 +23,7 @@ public class RatioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView =
-                inflater.inflate(R.layout.fragment_ratio, container, false);
+                inflater.inflate(R.layout.fragment_ratio_pour_over, container, false);
         // Inflate the layout for this fragment
         TextView ratioTextView = rootView.findViewById(R.id.water_ratio_textbox);
         EditText waterOutputBox = rootView.findViewById(R.id.water_textbox);

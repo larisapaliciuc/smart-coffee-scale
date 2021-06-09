@@ -15,7 +15,10 @@ SoftwareSerial bluetoothSerial(BT_SERIAL_TX, BT_SERIAL_RX);
 //Change this calibration factor as per your load cell once it is found you may need to vary it in thousands
 float calibration_factor = -2032405;
 float loadcell_data;
-signed short minutes, secondes;
+bool timer_on = false;
+bool countdown_on = false;
+signed short minutes, seconds;
+signed short seconds40 = 40;
 char timeline[16];
 unsigned long previousMillisScale = 0, previousMillisTimer = 0;        // will store last time LED was updated
 const long intervalTimer = 1000;  
@@ -26,6 +29,7 @@ bool buttoninc = 0;
  
 void setup() {
   pinMode(sw, INPUT);
+  pinMode(8, INPUT);
   bluetoothSerial.begin(9600);
   Serial.begin(9600);
   Serial.println("HX711 Calibration");
@@ -52,18 +56,28 @@ void setup() {
 }
 
 void loop() {
-  
-  getWeight();
+   getWeight();
+
    if (bluetoothSerial.available()) {
     char command = bluetoothSerial.read();
     Serial.print(command);
+    Serial.println();
     if(command  == 's'){
-      setTimer();
+      timer_on = true;      
     }
     if(command == 'r'){
-      resetTimer();        
+      timer_on = false;
+      resetTimer();      
     }
-  }  
+    if(command == 't'){
+      scale.tare();
+    }
+    if(command == 'c'){
+      countdown_on = true;
+    }
+  }
+   countdown40();
+   setTimer();
 }
 
 void getWeight(){
@@ -75,51 +89,64 @@ void getWeight(){
       if(loadcell_data >= -0.5 && loadcell_data <= 0.2 ){
         lcd.setCursor(11,1);
         loadcell_data = 0;
-        lcd.print("0.0g   ");
+        lcd.print("0.0   ");
       }
-      if(loadcell_data >=1000){
+      if(loadcell_data >= 1000){
         lcd.setCursor(11,1);
-        loadcell_data = 0;
+        //loadcell_data = 0;
         lcd.print("ERROR");
+        bluetoothSerial.print("ERROR");
+        bluetoothSerial.print('\n');
       }
       lcd.setCursor(11,1);
       lcd.print(loadcell_data,1);
       bluetoothSerial.print(loadcell_data,1);
       bluetoothSerial.print('\n');
-      if( loadcell_data > 5){
-         buttoninc = 2;
-      }
-      else
-        buttoninc = 0;
-         
    }
 }
+
 void setTimer(){
-      Serial.println();
       currentMillis = millis();
+      if(timer_on == true){
       if (currentMillis - previousMillisTimer >= intervalTimer) {
         previousMillisTimer = currentMillis;
         lcd.setCursor(0, 1);
-        secondes++;
-        sprintf(timeline,"%0.2d:%0.2d", minutes, secondes);
+        seconds++;
+        sprintf(timeline,"%0.2d:%0.2d", minutes, seconds);
         lcd.print(timeline);
-        if (secondes == 60)
+        if (seconds == 60)
         {
-          secondes = 0;
+          seconds = 0;
           minutes ++;
         }
-        if(minutes == 99 && secondes == 59){
+        if(minutes == 99 && seconds == 59){
           minutes = 0;
-          secondes = 0;
+          seconds = 0;
         }
-      }    
+    }
+  }    
 }
 
 void resetTimer(){
-  secondes = 0;
-  minutes = 0;
-  lcd.setCursor(0,1);
-  lcd.print("00:00");
+    seconds = 0;
+    minutes = 0;
+    lcd.setCursor(0,1);
+    lcd.print("00:00");
+}
+
+void countdown40(){ 
+  currentMillis = millis();
+  if(countdown_on == true){
+      if (currentMillis - previousMillisTimer >= intervalTimer) {
+        minutes = 0;
+        previousMillisTimer = currentMillis;
+        lcd.setCursor(0, 1);
+        if(seconds40 != 0)
+        seconds40--;
+        sprintf(timeline,"%0.2d:%0.2d", minutes, seconds40);
+        lcd.print(timeline);
+      }
+  } 
 }
 
 void calibrate(){

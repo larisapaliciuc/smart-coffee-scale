@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="#EBFDECDC"
         android:textAlignment="center"
         tools:context=".PourOverS1Fragment">
@@ -60,14 +62,14 @@
 
         <TextView
             android:id="@+id/contentTextView"
-            android:layout_width="356dp"
-            android:layout_height="270dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="364dp"
+            android:layout_height="485dp"
+            android:layout_marginTop="32dp"
             android:textAlignment="center"
             android:textColor="@color/coffee_brown"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintHorizontal_bias="0.592"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
 
@@ -102,27 +104,96 @@
             android:id="@+id/weightTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="87dp"
+            android:layout_marginBottom="71dp"
             android:text="@string/weight"
             android:textColor="@color/coffee_brown"
             android:textSize="36sp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contentTextView" />
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent" />
+
+     <!--   <com.jjoe64.graphview.GraphView
+            android:id="@+id/idGraphView"
+            android:layout_width="338dp"
+            android:layout_height="200dp"
+            android:layout_marginBottom="68dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" /> -->
 
         <TextView
             android:id="@+id/timeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="87dp"
-            android:text="@string/weight"
+            android:layout_marginBottom="13dp"
+            android:text="@string/text_timer"
             android:textColor="@color/coffee_brown"
             android:textSize="36sp"
             android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/next_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contentTextView" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <SeekBar
+            android:id="@+id/pouringSeekBar"
+            android:layout_width="230dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="184dp"
+            android:indeterminateOnly="false"
+            android:scrollbarSize="12dp"
+            android:theme="@style/SeekBarColor"
+            android:thumb="@drawable/coffee_thumb"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/fastTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="160dp"
+            android:text="Too Fast"
+            android:textColor="@color/coffee_brown"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.747"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/slowTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="160dp"
+            android:text="Too Slow"
+            android:textColor="@color/coffee_brown"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.252"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/goodTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="160dp"
+            android:text="Good"
+            android:textColor="@color/coffee_brown"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fastTextView"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toEndOf="@+id/slowTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

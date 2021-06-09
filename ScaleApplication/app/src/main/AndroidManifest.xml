@@ -12,6 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ScaleApplication">
+        <activity
+            android:name=".EspressoActivity"
+            android:label="@string/title_activity_espresso"
+            android:theme="@style/Theme.ScaleApplication.NoActionBar"></activity>
         <activity android:name=".PourOverActivity" />
         <activity android:name=".RemScaleActivity" />
 

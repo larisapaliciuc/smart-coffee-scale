@@ -1,14 +1,377 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/coffee_background"
+    android:id="@+id/ratio_espresso_fragment"
     tools:context=".RatioEspressoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="728dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/coffee_background"
+        android:textAlignment="center"
+        tools:context=".RatioEspressoFragment">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/linearEspressoLayout"
+            android:layout_width="413dp"
+            android:layout_height="728dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/espresso_back_button">
+
+            <FrameLayout
+                android:id="@+id/prep_espresso_fragment"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="match_parent"
+                android:layout_height="728dp">
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <requestFocus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="357dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:indeterminateOnly="false"
+            android:scrollbarSize="12dp"
+            android:theme="@style/SeekBarColor"
+            android:thumb="@drawable/coffee_thumb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/roastDateTextView" />
+
+        <requestFocus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <EditText
+            android:id="@+id/pressureTextView"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="72dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:inputType="number"
+            android:text="@string/default_pressure"
+            android:textAlignment="center"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pressEspressorTextView">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/barTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="@string/bar_text"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/pressureTextView"
+            app:layout_constraintTop_toBottomOf="@+id/pressEspressorTextView" />
+
+        <CheckBox
+            android:id="@+id/setDefaultCheckBox"
+            android:layout_width="151dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/set_default"
+            android:textColor="@color/coffee_brown"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coffeeTypeSpinner" />
+
+        <TextView
+            android:id="@+id/celsiusDegreestextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="@string/celsius_degrees"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/temperatureTextView"
+            app:layout_constraintTop_toBottomOf="@+id/waterTempTextView" />
+
+        <TextView
+            android:id="@+id/waterTempTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/temp_espressor"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oneDayTextView" />
+
+        <Spinner
+            android:id="@+id/coffeeTypeSpinner"
+            android:layout_width="281dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:isScrollContainer="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waterTempTextView2" />
+
+        <TextView
+            android:id="@+id/pressEspressorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/press_espressor"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/temperatureTextView" />
+
+        <TextView
+            android:id="@+id/waterTempTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/coffee_type"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pressureTextView" />
+
+        <EditText
+            android:id="@+id/temperatureTextView"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="72dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusableInTouchMode="false"
+            android:inputType="number"
+            android:text="@string/default_degrees"
+            android:textAlignment="center"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waterTempTextView">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/coffeeGramsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/coffee_text"
+            android:textColor="#492105"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/espresso_coffee_textbox"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="49dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@+id/scaleWeightTextView"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:inputType="number"
+            android:singleLine="true"
+            android:text="@string/es_coffee_grams_text"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#492105"
+            android:textColorHint="#492105"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/coffeeGramsTextView">
+        </EditText>
+
+        <TextView
+            android:id="@+id/oneDayTextView"
+            android:layout_width="53dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/one_day"
+            android:textColor="@color/coffee_brown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/oneMonthTextView"
+            android:layout_width="53dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/one_month"
+            android:textColor="@color/coffee_brown"
+            app:layout_constraintEnd_toEndOf="@+id/linearEspressoLayout"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/gramsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/grams_text"
+            android:textColor="#492105"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/espresso_coffee_textbox"
+            app:layout_constraintTop_toBottomOf="@+id/coffeeGramsTextView" />
+
+        <TextView
+            android:id="@+id/RatioTextView"
+            android:layout_width="0dp"
+            android:layout_height="27dp"
+            android:layout_marginEnd="82dp"
+            android:hint="@string/ratio_input_text"
+            android:text="@string/ratio_text"
+            android:textColor="#492105"
+            android:textColorHint="#492105"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/linearEspressoLayout"
+            app:layout_constraintTop_toBottomOf="@+id/espressoTitleTextView" />
+
+        <EditText
+            android:id="@+id/espresso_water_ratio_textbox"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="70dp"
+            android:layout_toRightOf="@+id/scaleWeightTextView"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:inputType="number"
+            android:singleLine="true"
+            android:text="@string/es_ratio_text"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#492105"
+            android:textColorHint="#492105"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/linearEspressoLayout"
+            app:layout_constraintTop_toBottomOf="@+id/RatioTextView"></EditText>
+
+        <requestFocus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <EditText
+            android:id="@+id/espresso_coffee_ratio_textbox"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:layout_toRightOf="@+id/scaleWeightTextView"
+            android:background="#FFFFFF"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:ems="10"
+            android:inputType="number"
+            android:singleLine="true"
+            android:text="@string/ratio_input_text"
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#492105"
+            android:textColorHint="#492105"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/espresso_water_ratio_textbox"
+            app:layout_constraintTop_toBottomOf="@+id/RatioTextView">
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/roastDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="37dp"
+            android:text="@string/roast_time"
+            android:textColor="@color/coffee_brown"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RatioTextView" />
+
+        <requestFocus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="22dp" />
+
+        <TextView
+            android:id="@+id/espressoTitleTextView"
+            android:layout_width="410dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="177dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="177dp"
+            android:text="@string/date_espresso_text"
+            android:textAlignment="center"
+            android:textColor="#492105"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/espresso_prep_button"
+            android:layout_width="197dp"
+            android:layout_height="67dp"
+            android:layout_marginTop="430dp"
+            android:text="@string/start"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:backgroundTint="#492105"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/espressoTitleTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

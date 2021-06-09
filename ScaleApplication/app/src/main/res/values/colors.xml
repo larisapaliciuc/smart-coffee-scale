@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="coffee_brown">#492105</color>
     <color name="coffee_background">#EBFDECDC</color>
+    <color name="seekbar_gray">#D9CABC</color>
 </resources>

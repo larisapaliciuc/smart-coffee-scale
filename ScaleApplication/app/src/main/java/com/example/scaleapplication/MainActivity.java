@@ -58,4 +58,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, PourOverActivity.class);
         startActivity(intent);
     }
+
+    public void onClickEspresso(View view){
+        Intent intent = new Intent(MainActivity.this, EspressoActivity.class);
+        startActivity(intent);
+
+    }
+
 }
